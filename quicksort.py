@@ -1,24 +1,18 @@
-def quicksort(arr):
-    if len(arr) < 2:
-        return arr
-    pivot = arr[0]
-    print(f"pivot: {pivot}")
+def quicksort(ary):
+    if len(ary) <= 1:
+        return ary
+    pivot = ary[0]
     low = []
     high = []
-    for val in arr:
+    for i in range(1, len(ary)):
+        val = ary[i]
         if val < pivot:
             low.append(val)
         else:
             high.append(val)
-    del high[0]
-    print(f"high: {high}")
-    print(f"low: {low}")
-    print("----")
-    quicksort(low)
-    quicksort(high)
+    low = quicksort(low)
+    high = quicksort(high)
     low.append(pivot)
     return low + high
 
-
-print(quicksort([3, 5, 2, 8, 9, 1]))
-print("done")
+print(quicksort([3, 5, 2, 8, 9, 1, 1, -1000]))
